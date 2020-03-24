@@ -14,6 +14,12 @@
             "email": "m.pociot@gmail.com"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/coder-cso/documentarian"
+        }
+    ],
     "require": {
         "php": ">=7.2.0",
         "ext-json": "*",
@@ -22,7 +28,7 @@
         "illuminate/routing": "^5.7|^6.0|^7.0",
         "illuminate/support": "^5.7|^6.0|^7.0",
         "league/flysystem": "^1.0",
-        "mpociot/documentarian": "^0.4.0",
+        "mpociot/documentarian": "dev-master",
         "mpociot/reflection-docblock": "^1.0.1",
         "nunomaduro/collision": "^3.0|^4.0",
         "ramsey/uuid": "^3.8",

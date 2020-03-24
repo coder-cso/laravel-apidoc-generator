@@ -7,24 +7,24 @@ return [
      * - "laravel" will generate the documentation as a Blade view,
      * so you can add routing and authentication.
      */
-    'type' => 'static',
+    'type'     => 'static',
 
     /*
      * Settings for `laravel` type output.
      */
-    'laravel' => [
+    'laravel'  => [
         /*
          * Whether to automatically create a docs endpoint for you to view your generated docs.
          * If this is false, you can still set up routing manually.
          */
-        'autoload' => false,
+        'autoload'   => false,
 
         /*
          * URL path to use for the docs endpoint (if `autoload` is true).
          *
          * By default, `/doc` opens the HTML page, and `/doc.json` downloads the Postman collection.
          */
-        'docs_url' => '/doc',
+        'docs_url'   => '/doc',
 
         /*
          * Middleware to attach to the docs endpoint (if `autoload` is true).
@@ -35,7 +35,7 @@ return [
     /*
      * The router to be used (Laravel or Dingo).
      */
-    'router' => 'laravel',
+    'router'   => 'laravel',
 
     /*
      * The base URL to be used in examples and the Postman collection.
@@ -49,16 +49,16 @@ return [
      * For 'laravel' docs, it will be generated to storage/app/apidoc/collection.json.
      * The `ApiDoc::routes()` helper will add routes for both the HTML and the Postman collection.
      */
-    'postman' => [
+    'postman'  => [
         /*
          * Specify whether the Postman collection should be generated.
          */
-        'enabled' => true,
+        'enabled'     => true,
 
         /*
          * The name for the exported Postman collection. Default: config('app.name')." API"
          */
-        'name' => null,
+        'name'        => null,
 
         /*
          * The description for the exported Postman collection.
@@ -69,7 +69,7 @@ return [
          * The "Auth" section that should appear in the postman collection. See the schema docs for more information:
          * https://schema.getpostman.com/json/collection/v2.0.0/docs/index.html
          */
-        'auth' => null,
+        'auth'        => null,
     ],
 
     /*
@@ -77,18 +77,18 @@ return [
      * Each group contains rules defining which routes should be included ('match', 'include' and 'exclude' sections)
      * and rules which should be applied to them ('apply' section).
      */
-    'routes' => [
+    'routes'   => [
         [
             /*
              * Specify conditions to determine what routes will be parsed in this group.
              * A route must fulfill ALL conditions to pass.
              */
-            'match' => [
+            'match'   => [
 
                 /*
                  * Match only routes whose domains match this pattern (use * as a wildcard to match any characters).
                  */
-                'domains' => [
+                'domains'  => [
                     '*',
                     // 'domain1.*',
                 ],
@@ -131,13 +131,13 @@ return [
             /*
              * Specify rules to be applied to all the routes in this group when generating documentation
              */
-            'apply' => [
+            'apply'   => [
                 /*
                  * Specify headers to be added to the example requests
                  */
-                'headers' => [
+                'headers'        => [
                     'Content-Type' => 'application/json',
-                    'Accept' => 'application/json',
+                    'Accept'       => 'application/json',
                     // 'Authorization' => 'Bearer {token}',
                     // 'Api-Version' => 'v2',
                 ],
@@ -152,7 +152,7 @@ return [
                      * API calls will be made only for routes in this group matching these HTTP methods (GET, POST, etc).
                      * List the methods here or use '*' to mean all methods. Leave empty to disable API calls.
                      */
-                    'methods' => ['GET'],
+                    'methods'     => ['GET'],
 
                     /*
                      * Laravel config variables which should be set for the API call.
@@ -160,8 +160,8 @@ return [
                      * and other external services are not triggered
                      * during the documentation API calls
                      */
-                    'config' => [
-                        'app.env' => 'documentation',
+                    'config'      => [
+                        'app.env'   => 'documentation',
                         'app.debug' => false,
                         // 'service.key' => 'value',
                     ],
@@ -169,7 +169,7 @@ return [
                     /*
                      * Cookies which should be sent with the API call.
                      */
-                    'cookies' => [
+                    'cookies'     => [
                         // 'name' => 'value'
                     ],
 
@@ -183,7 +183,7 @@ return [
                     /*
                      * Body parameters which should be sent with the API call.
                      */
-                    'bodyParams' => [
+                    'bodyParams'  => [
                         // 'key' => 'value',
                     ],
                 ],
@@ -191,23 +191,26 @@ return [
         ],
     ],
 
-    'strategies' => [
-        'metadata' => [
+    'strategies'        => [
+        'metadata'           => [
             \Mpociot\ApiDoc\Extracting\Strategies\Metadata\GetFromDocBlocks::class,
         ],
-        'urlParameters' => [
+        'urlParameters'      => [
             \Mpociot\ApiDoc\Extracting\Strategies\UrlParameters\GetFromUrlParamTag::class,
         ],
-        'queryParameters' => [
+        'queryParameters'    => [
             \Mpociot\ApiDoc\Extracting\Strategies\QueryParameters\GetFromQueryParamTag::class,
         ],
-        'headers' => [
+        'headers'            => [
             \Mpociot\ApiDoc\Extracting\Strategies\RequestHeaders\GetFromRouteRules::class,
         ],
-        'bodyParameters' => [
+        'bodyParameters'     => [
             \Mpociot\ApiDoc\Extracting\Strategies\BodyParameters\GetFromBodyParamTag::class,
         ],
-        'responses' => [
+        'responseParameters' => [
+            \Mpociot\ApiDoc\Extracting\Strategies\ResponseParameters\GetFromResponseParamTag::class,
+        ],
+        'responses'          => [
             \Mpociot\ApiDoc\Extracting\Strategies\Responses\UseTransformerTags::class,
             \Mpociot\ApiDoc\Extracting\Strategies\Responses\UseResponseTag::class,
             \Mpociot\ApiDoc\Extracting\Strategies\Responses\UseResponseFileTag::class,
@@ -226,12 +229,12 @@ return [
      * If you want to use this, please be aware of the following rules:
      * - the image size must be 230 x 52
      */
-    'logo' => false,
+    'logo'              => false,
 
     /*
      * Name for the group of routes which do not have a @group set.
      */
-    'default_group' => 'general',
+    'default_group'     => 'general',
 
     /*
      * Example requests for each endpoint will be shown in each of these languages.
@@ -251,7 +254,7 @@ return [
      * Requires league/fractal package: composer require league/fractal
      *
      */
-    'fractal' => [
+    'fractal'           => [
         /* If you are using a custom serializer with league/fractal,
          * you can specify it here.
          *
@@ -270,12 +273,12 @@ return [
      * set this to any number (eg. 1234)
      *
      */
-    'faker_seed' => null,
+    'faker_seed'        => null,
 
     /*
      * If you would like to customize how routes are matched beyond the route configuration you may
      * declare your own implementation of RouteMatcherInterface
      *
      */
-    'routeMatcher' => \Mpociot\ApiDoc\Matching\RouteMatcher::class,
+    'routeMatcher'      => \Mpociot\ApiDoc\Matching\RouteMatcher::class,
 ];
